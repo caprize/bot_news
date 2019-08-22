@@ -15,8 +15,10 @@ import os
 
 @tb.message_handler(commands=['start', 'help'])
 def upper(message: Message):
+    with open('kanal.json', 'r') as jf:
+        file = json.load(jf)
     with open('admins.json', 'w') as f:
-        r = tb.get_chat_administrators(-243828263)
+        r = tb.get_chat_administrators(file)
         ad =[]
         for i in range (len(r)):
             ad.append(r[i].user.id)
